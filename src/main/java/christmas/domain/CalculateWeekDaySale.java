@@ -12,14 +12,14 @@ public class CalculateWeekDaySale {
 
     public int calculateWeekDaySales(int day, HashMap<String,Integer> orderList){
         int sale = ZERO;
-        if(checkWeekendSale(day,orderList)){
-            sale = countWeekDayMainMenu(orderList);
+        if(checkWeekDaySale(day,orderList)){
+            sale = countWeekDayDessertMenu(orderList);
             return sale * WEEKDAY_SALE_PRICE;
         }
         return sale;
     }
 
-    private int countWeekDayMainMenu(HashMap<String,Integer> orderList){
+    private int countWeekDayDessertMenu(HashMap<String,Integer> orderList){
         int count = ZERO;
         for(Map.Entry<String,Integer> item : orderList.entrySet()){
             if(MenuCategory.valueOf(item.getKey()).getCategory().equals(DESSERT)){
@@ -29,7 +29,7 @@ public class CalculateWeekDaySale {
         return count;
     }
 
-    private boolean checkWeekendSale(int day, HashMap<String,Integer> orderList){
+    private boolean checkWeekDaySale(int day, HashMap<String,Integer> orderList){
         return (!calculateWeekendSale.checkWeekend(day) && calculateWeekendSale.makeCategoryList(orderList).contains(DESSERT));
     }
 }
