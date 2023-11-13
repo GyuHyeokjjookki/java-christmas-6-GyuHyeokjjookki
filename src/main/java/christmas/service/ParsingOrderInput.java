@@ -13,6 +13,9 @@ public class ParsingOrderInput {
     ListConverter listConverter = new ListConverter();
     NumberConverter numberConverter = new NumberConverter();
 
+    private static final String HYPEN = "-";
+    private static final String REST_POINT = ",";
+
     public HashMap<String, Integer> orderResultList(String input) {
         HashMap<String, Integer> orderList = new HashMap<>();
         List<String> parsingRestPoint = parseRestPoint(input);
@@ -37,7 +40,7 @@ public class ParsingOrderInput {
     }
 
     private void checkValidHypen(String userInput){
-        if(!userInput.contains("-")){
+        if(!userInput.contains(HYPEN)){
             throw new IllegalArgumentException(ErrorMessages.INVALID_ORDER_ERROR.getMessage());
         }
     }
@@ -51,12 +54,12 @@ public class ParsingOrderInput {
     }
 
     private List<String> parseRestPoint(String input) {
-        List<String> parsingRestPointList = listConverter.convertToList(input.split(","));
+        List<String> parsingRestPointList = listConverter.convertToList(input.split(REST_POINT));
         return parsingRestPointList;
     }
 
     private List<String> parseHypen(String input) {
-        List<String> parsingHypen = listConverter.convertToList(input.split("-"));
+        List<String> parsingHypen = listConverter.convertToList(input.split(HYPEN));
         return parsingHypen;
     }
 }
