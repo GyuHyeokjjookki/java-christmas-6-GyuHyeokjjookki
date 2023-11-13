@@ -30,7 +30,7 @@ public class ParsingOrderInput {
     }
 
     private void checkDuplicated(HashMap<String,Integer> orderList, List<String> menuList){
-        if(orderList.containsKey(menuList.get(0))){
+        if(orderList.containsKey(menuList.get(ZERO))){
             throw new IllegalArgumentException(ErrorMessages.INVALID_ORDER_ERROR.getMessage());
         }
     }
