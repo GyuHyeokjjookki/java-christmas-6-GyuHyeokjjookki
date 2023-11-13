@@ -17,6 +17,7 @@ public class ParsingOrderInput {
         HashMap<String, Integer> orderList = new HashMap<>();
         List<String> parsingRestPoint = parseRestPoint(input);
         for (String order : parsingRestPoint) {
+            checkValidHypen(order);
             List<String> parseHypenOrder = parseHypen(order);
             checkValidInput(orderList,parseHypenOrder);
             orderList.put(parseHypenOrder.get(ZERO), numberConverter.numberConvert(parseHypenOrder.get(1)));
@@ -35,13 +36,18 @@ public class ParsingOrderInput {
         }
     }
 
+    private void checkValidHypen(String userInput){
+        if(!userInput.contains("-")){
+            throw new IllegalArgumentException(ErrorMessages.INVALID_ORDER_ERROR.getMessage());
+        }
+    }
+
     private void checkValidParse(List<String> userInput){
         try{
             numberConverter.numberConvert(userInput.get(ONE));
         }catch (NumberFormatException e){
             throw new IllegalArgumentException(ErrorMessages.INVALID_ORDER_ERROR.getMessage());
         }
-
     }
 
     private List<String> parseRestPoint(String input) {
